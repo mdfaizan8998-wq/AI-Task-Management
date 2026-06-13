@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://127.0.0.1:8000";
+const API_BASE_URL = ""https://ai-task-management-production.up.railway.app";
 
 function switchCard(cardId) {
     document.querySelectorAll('.auth-card, .dashboard-card').forEach(card => card.classList.add('hidden'));
