@@ -7,7 +7,7 @@ from src.tasks.database import create_db
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
-
+import os
 app = FastAPI(title="This is  My Tasks Management App With GenAI")
 
 create_db()
