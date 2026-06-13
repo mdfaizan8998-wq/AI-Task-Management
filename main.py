@@ -5,6 +5,8 @@ from src.AI.router import ai
 from src.users.database import create_db
 from src.tasks.database import create_db
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 
 app = FastAPI(title="This is  My Tasks Management App With GenAI")
 
@@ -16,7 +18,11 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+app.mount("/static", StaticFiles(directory="frontend"), name="static")
 
 app.include_router(router)
 app.include_router(user)
 app.include_router(ai)
+@app.get("/")
+async def read_index():
+    return FileResponse(os.path.join("frontend", "index.html"))
