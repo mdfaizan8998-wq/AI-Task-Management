@@ -18,11 +18,11 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-app.mount("/static", StaticFiles(directory="frontend"), name="static")
+app.mount("/Static", StaticFiles(directory="src/Static"), name="static")
+@app.get("/")
+async def read_index():
+    return FileResponse(os.path.join("frontend", "index.html"))
 
 app.include_router(router)
 app.include_router(user)
 app.include_router(ai)
-@app.get("/")
-async def read_index():
-    return FileResponse(os.path.join("frontend", "index.html"))
