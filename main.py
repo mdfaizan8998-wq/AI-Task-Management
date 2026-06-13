@@ -13,7 +13,11 @@ app = FastAPI(title="This is  My Tasks Management App With GenAI")
 create_db()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Development me clear testing ke liye allows all origins
+    allow_origins=[
+        "https://ai-task-management-production.up.railway.app",  # Aapka Railway URL
+        "http://localhost:8000",                               # Local testing ke liye
+        "http://127.0.0.1:8000"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
