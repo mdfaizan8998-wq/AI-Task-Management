@@ -1,4 +1,4 @@
-const API_BASE_URL = ""https://ai-task-management-production.up.railway.app";
+const API_BASE_URL = "https://ai-task-management-production.up.railway.app";
 
 function switchCard(cardId) {
     document.querySelectorAll('.auth-card, .dashboard-card').forEach(card => card.classList.add('hidden'));
@@ -326,12 +326,11 @@ document.addEventListener("DOMContentLoaded", () => {
         aiTagWrapper.style.display = "none";
 
         try {
-            const response = await fetch("https://ai-task-management-production.up.railway.app", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ title: titleValue })
-            });
-
+            const response = await fetch(`${API_BASE_URL}/suggest`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ title: titleValue })
+});
             if (!response.ok) {
                 const errorData = await response.json();
                 throw new Error(errorData.detail || "Automation failed.");
