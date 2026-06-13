@@ -21,7 +21,8 @@ app.add_middleware(
 app.mount("/Static", StaticFiles(directory="src/Static"), name="static")
 @app.get("/")
 async def read_index():
-    return FileResponse(os.path.join("frontend", "index.html"))
+    # Sahi path: main.py se 'src', fir 'templates', fir 'index.html'
+    return FileResponse(os.path.join("src", "templates", "index.html"))
 
 app.include_router(router)
 app.include_router(user)
