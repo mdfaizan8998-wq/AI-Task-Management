@@ -7,7 +7,7 @@ from src.users import controller
 user = APIRouter(prefix="/auth",  tags=["Auth"])
 
 @user.post("/registration", status_code=status.HTTP_201_CREATED)
-def registraion(body:RegisterationSchema, db:Session = Depends(get_db)):
+def registraion(body:RegisterationSchema, db:Session = Depends(get_db),background_tasks: BackgroundTasks = BackgroundTasks()):
     return controller.registration(body, db,background_tasks)
 
 @user.post("/verify",status_code=status.HTTP_200_OK)
