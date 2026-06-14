@@ -644,14 +644,17 @@
             </div>
             <div class="task-form-container">
     <h3><i class="fa-solid fa-circle-plus"></i> Create New Task</h3>
-    <form id="task-form">
-        <input type="hidden" id="task-id-edit">
+    <div class="task-form-container">
+                <h3><i class="fa-solid fa-circle-plus"></i> Create New Task</h3>
+                <form id="task-form">
+                    <input type="hidden" id="task-id-edit">
 
-        <div class="form-row task-title-row">
-            <input type="text" id="task-title" placeholder="Task Title..." required>
+                    <div class="form-row" style="display: flex; gap: 10px; align-items: center;">
+                        <input type="text" id="task-title" placeholder="Task Title..." style="flex: 1;" required>
 
-            <button type="button" id="ask-ai-btn" class="btn-action-primary ai-btn-style">
-                <i class="fa-solid fa-wand-magic-sparkles"></i> Ask AI
+                        <button type="button" id="ask-ai-btn" class="btn-action-primary"
+                            style="background: linear-gradient(135deg, #6e8efb, #a777e3); white-space: nowrap; width: auto; padding: 0 15px; height: 42px;">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i> Ask AI
             </button>
                         <select id="task-priority">
                             <option value="LOW">LOW</option>
