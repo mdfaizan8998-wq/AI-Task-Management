@@ -64,8 +64,8 @@ def registration(body:RegisterationSchema, db:Session):
         db.refresh(pending_user)
         current_pending_email = pending_user.email
     
-    print("Saved pending user:", current_pending_email)
-    print(db.query(PendingUser).all())
+    
+
     send_email(body.email, f" Your OTP is {otp}")
 
     
