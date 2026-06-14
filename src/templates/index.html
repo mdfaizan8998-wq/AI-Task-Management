@@ -589,40 +589,7 @@
             transition: height 0.15s ease-out;
             /* Smooth height scaling transition */
         }
-        /* Title, Ask AI, aur Dropdown ka main container */
-.task-title-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
-}
-
-/* Task Title Input ko poori bachi hui space milni chahiye */
-#task-title {
-    flex: 1; /* <--- Isse input chota nahi hoga, bachi hui saari jagah le lega */
-    min-width: 0; /* Flexbox me width shrink issue ko rokta hai */
-    padding: 10px;
-    border-radius: 6px;
-    background: #1e293b; /* Jo bhi tumhara dark theme color ho */
-    color: white;
-    border: 1px solid #334155;
-}
-
-/* Buttons/Dropdowns ka size fix rahe, wo shrink na hon */
-#ask-ai-btn, .priority-dropdown {
-    flex-shrink: 0; /* <--- Isse ye elements dabenge nahi */
-}
-
-/* --- MOBILE RESPONSIVENESS --- */
-@media (max-width: 500px) {
-    .task-title-row {
-        flex-direction: column; /* Mobile par sab ek ke neeche ek aa jayenge */
-        align-items: stretch; /* Sabki width barabar ho jayegi */
-    }
-
-    #task-title, #ask-ai-btn, .priority-dropdown {
-        width: 100%; /* Mobile par full width */
-    }
+  
 }
     </style>
 
