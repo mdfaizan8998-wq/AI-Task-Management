@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, status, Depends,Request
+from fastapi import APIRouter, HTTPException, status, Depends,Request,BackgroundTasks
 from src.users.schemas import RegisterationSchema,AuthResponseSchema,LoginSchema,OtpSchema
 from sqlmodel import Session
 from src.users.database import get_db
@@ -8,7 +8,7 @@ user = APIRouter(prefix="/auth",  tags=["Auth"])
 
 @user.post("/registration", status_code=status.HTTP_201_CREATED)
 def registraion(body:RegisterationSchema, db:Session = Depends(get_db)):
-    return controller.registration(body, db)
+    return controller.registration(body, db,background_tasks)
 
 @user.post("/verify",status_code=status.HTTP_200_OK)
 def verify(body:OtpSchema, db:Session=Depends(get_db)):
