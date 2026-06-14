@@ -23,11 +23,10 @@ Todo App Team
 """)
     
 
-    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
-        smtp.login(
+   with smtplib.SMTP("smtp.gmail.com", 587, timeout=15) as smtp:
+        smtp.starttls()
             "md.faizan8998@gmail.com",
             "scyr beod baif ukif"
         )
         smtp.send_message(msg)
-
 
