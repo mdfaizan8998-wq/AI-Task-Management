@@ -326,11 +326,12 @@ document.addEventListener("DOMContentLoaded", () => {
         aiTagWrapper.style.display = "none";
 
         try {
-            const response = await fetch(`${API_BASE_URL}/suggest", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ title: titleValue })
-            });
+            // ✅ Isko correct karke replace karein:
+const response = await fetch(`${API_BASE_URL}/suggest`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ title: titleValue })
+});
 
             if (!response.ok) {
                 const errorData = await response.json();
@@ -363,4 +364,13 @@ document.addEventListener("DOMContentLoaded", () => {
             askAiBtn.disabled = false;
         }
     });
+
+    // Textarea Auto-Grow Logic
+const tx = document.getElementById("task-desc");
+if (tx) {
+    tx.addEventListener("input", function() {
+        this.style.height = "auto";
+        this.style.height = (this.scrollHeight) + "px";
+    });
+}
 });
