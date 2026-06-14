@@ -13,7 +13,7 @@ class UserTable(SQLModel, table=True):
     id : int | None = Field(default=None, primary_key=True)
 
     name : str 
-    username : str = Field(unique=True, index=True)
+    username : str 
     email : EmailStr = Field(unique=True, index=True)
     hashed_password : str
     updated_at : datetime | None = Field(default_factory=None, sa_column_kwargs={"onupdate":lambda:datetime.now(timezone.utc)})
@@ -29,7 +29,7 @@ class PendingUser(SQLModel, table=True):
 
     id : int | None = Field(default=None, primary_key=True)
     name : str 
-    username : str = Field(unique=True, index=True)
+    username : str 
     email : EmailStr = Field(unique=True,index=True)
     hashed_password : str
     otp : str
