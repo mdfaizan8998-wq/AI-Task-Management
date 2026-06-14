@@ -363,3 +363,17 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+taskSubmitBtn.addEventListener("click", async (e) => {
+        e.preventDefault(); // Form ko automatic reload hone se rokne ke liye
+
+        const title = taskTitleInput.value.trim();
+        const description = taskDescInput.value.trim();
+        
+        // AI Tag ko extract karna (agar text khaali hai toh null ya empty string bhejenge)
+        const tag = taskTagPreview.textContent.trim(); 
+
+        if (!title) {
+            alert("Bhai, Task Title likhna zaroori hai! 📝");
+            taskTitleInput.focus();
+            return;
+        }
