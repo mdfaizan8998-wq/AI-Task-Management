@@ -42,12 +42,13 @@ def registration(body:RegisterationSchema, db:Session):
     
     
     hashed_password = get_password_hash(body.password)
-    pending_user = db.query(PendingUser).filter(PendingUser.email == body.email).first()
-    if pending_user:
-        pending_user.name = body.name
-        pending_user.username = body.username
-        pending_user.hashed_password = hashed_password
-        pending_user.otp = otp
+    existing_user = db.query(PendingUser).filter(PendingUser.email == body.email).first()
+    if existing_user:
+        existing_user.name = body.name
+        existing_user.username = body.username
+        existing_user.hashed_password = hashed_password
+        existing_user.otp = otp
+        
 
     else:
         pending_user = PendingUser(
@@ -61,10 +62,9 @@ def registration(body:RegisterationSchema, db:Session):
         db.add(pending_user)
         db.commit()
         db.refresh(pending_user)
+        current_pending_email = pending_user.email
     
-    db.commit()
-
-    print("Saved pending user:", pending_user.email)
+    print("Saved pending user:", current_pending_email)
     print(db.query(PendingUser).all())
     send_email(body.email, f" Your OTP is {otp}")
 
