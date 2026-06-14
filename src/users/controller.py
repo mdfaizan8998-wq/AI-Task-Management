@@ -1,4 +1,4 @@
-from fastapi import HTTPException,status,Request,Depends
+from fastapi import HTTPException,status,Request,Depends,BackgroundTasks
 from src.users.schemas import RegisterationSchema,LoginSchema,OtpSchema
 from sqlmodel import Session
 from src.users.models import UserTable, PendingUser
@@ -30,7 +30,7 @@ def verify_password(plain_password, hashed_password):
 
 
 
-def registration(body:RegisterationSchema, db:Session):
+def registration(body:RegisterationSchema, db:Session,background_tasks: BackgroundTasks):
     otp = str(random.randint(100000, 999999))
    
     is_user = db.query(UserTable).filter(UserTable.email == body.email).first()
@@ -48,6 +48,8 @@ def registration(body:RegisterationSchema, db:Session):
         existing_user.username = body.username
         existing_user.hashed_password = hashed_password
         existing_user.otp = otp
+
+        pending_user = existing_user
         
 
     else:
@@ -60,17 +62,12 @@ def registration(body:RegisterationSchema, db:Session):
         )
        
         db.add(pending_user)
-        db.commit()
-        db.refresh(pending_user)
-        current_pending_email = pending_user.email
-    
-    
-
-    send_email(body.email, f" Your OTP is {otp}")
-
+    db.commit()
+    db.refresh(pending_user)
+        
+    background_tasks.add_task(send_email, body.email, otp)
     
 
-    
     
     return pending_user
 
