@@ -326,11 +326,12 @@ document.addEventListener("DOMContentLoaded", () => {
         aiTagWrapper.style.display = "none";
 
         try {
-            const response = await fetch(`${API_BASE_URL}/suggest`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ title: titleValue })
-});
+            const response = await fetch("http://127.0.0.1:8000/suggest", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ title: titleValue })
+            });
+
             if (!response.ok) {
                 const errorData = await response.json();
                 throw new Error(errorData.detail || "Automation failed.");
@@ -363,17 +364,3 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
-taskSubmitBtn.addEventListener("click", async (e) => {
-        e.preventDefault(); // Form ko automatic reload hone se rokne ke liye
-
-        const title = taskTitleInput.value.trim();
-        const description = taskDescInput.value.trim();
-        
-        // AI Tag ko extract karna (agar text khaali hai toh null ya empty string bhejenge)
-        const tag = taskTagPreview.textContent.trim(); 
-
-        if (!title) {
-            alert("Bhai, Task Title likhna zaroori hai! 📝");
-            taskTitleInput.focus();
-            return;
-        }
