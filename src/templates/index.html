@@ -589,12 +589,10 @@
             transition: height 0.15s ease-out;
             /* Smooth height scaling transition */
         }
-  
-}
     </style>
 
 <body>
-    <h1></h1>
+
     <div class="container">
         <div id="register-card" class="auth-card">
             <h2>Create Account</h2>
@@ -643,8 +641,6 @@
                 <button id="logout-btn" class="btn-logout"><i class="fa-solid fa-sign-out"></i> Logout</button>
             </div>
             <div class="task-form-container">
-    <h3><i class="fa-solid fa-circle-plus"></i> Create New Task</h3>
-    <div class="task-form-container">
                 <h3><i class="fa-solid fa-circle-plus"></i> Create New Task</h3>
                 <form id="task-form">
                     <input type="hidden" id="task-id-edit">
@@ -655,7 +651,7 @@
                         <button type="button" id="ask-ai-btn" class="btn-action-primary"
                             style="background: linear-gradient(135deg, #6e8efb, #a777e3); white-space: nowrap; width: auto; padding: 0 15px; height: 42px;">
                             <i class="fa-solid fa-wand-magic-sparkles"></i> Ask AI
-            </button>
+                        </button>
                         <select id="task-priority">
                             <option value="LOW">LOW</option>
                             <option value="MEDIUM" selected>MEDIUM</option>
@@ -696,7 +692,7 @@
             </div>
         </div>
     </div>
-
+    <input type="hidden" id="hidden-task-tag" name="tag">
     <div id="toast" class="toast"></div>
 
     <script src="../Static/script.js"></script>
