@@ -1,4 +1,3 @@
-
 from email.message import EmailMessage
 import smtplib
 
@@ -24,11 +23,10 @@ Todo App Team
     
 
 
-      with smtplib.SMTP("smtp.gmail.com", 587, timeout=15) as smtp:
+    with smtplib.SMTP("smtp.gmail.com", 587, timeout=15) as smtp:
             smtp.starttls() # 🔥 Yeh line connection ko secure karegi (TLS)
             smtp.login(
                 "md.faizan8998@gmail.com",
                 "scyr beod baif ukif"
             )
             smtp.send_message(msg)
-
